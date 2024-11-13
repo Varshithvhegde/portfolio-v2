@@ -3,14 +3,14 @@ import { motion } from "framer-motion";
 
 const Navbar: FC = () => {
   const [activeSection, setActiveSection] = useState<string>('');
-  const [previousSection, setPreviousSection] = useState<string>('');
+  // const [previousSection, setPreviousSection] = useState<string>('');
 
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
     const navbarHeight = 64;
     
     if (element) {
-      setPreviousSection(activeSection);
+      // setPreviousSection(activeSection);
       setActiveSection(sectionId);
       
       const elementPosition = element.getBoundingClientRect().top;
@@ -31,7 +31,7 @@ const Navbar: FC = () => {
       const isAtBottom = window.innerHeight + window.pageYOffset >= document.documentElement.scrollHeight - 100;
       
       if (isAtBottom) {
-        setPreviousSection(activeSection);
+        // setPreviousSection(activeSection);
         setActiveSection('contact');
         return;
       }
@@ -43,7 +43,7 @@ const Navbar: FC = () => {
           const sectionBottom = sectionTop + section.offsetHeight;
           
           if (scrollPosition >= sectionTop && scrollPosition < sectionBottom) {
-            setPreviousSection(activeSection);
+            // setPreviousSection(activeSection);
             setActiveSection(section.id);
             found = true;
           }

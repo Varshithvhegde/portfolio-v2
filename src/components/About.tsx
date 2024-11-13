@@ -108,7 +108,7 @@ const About = () => {
             transition={{ duration: 0.3 }}
           >
             <p>
-              I'm a <span className="text-blue-400 font-semibold">Backend Developer</span> with over 
+              I&apos;m a <span className="text-blue-400 font-semibold">Backend Developer</span> with over 
               <span className="text-purple-400 font-semibold"> 1.5 years </span> 
               of experience in building and optimizing server-side applications. 
               My expertise lies in <span className="text-blue-400 font-semibold">Java, Spring Boot, Python, Flask, and AWS Cloud Services</span>, complemented by strong 
@@ -135,7 +135,7 @@ const About = () => {
             transition={{ duration: 0.3 }}
           >
             <p>
-              I'm passionate about <span className="text-blue-400 font-semibold">writing clean, maintainable code</span> and delivering 
+              I&apos;m passionate about <span className="text-blue-400 font-semibold">writing clean, maintainable code</span> and delivering 
               <span className="text-purple-400 font-semibold"> high-quality, scalable software solutions</span>. 
               My experience includes <span className="text-blue-400 font-semibold">leading cloud infrastructure initiatives</span>, developing full-stack applications, and 
               implementing efficient data processing systems.

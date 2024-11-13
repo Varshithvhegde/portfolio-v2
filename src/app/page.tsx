@@ -1,5 +1,5 @@
 "use client"
-import { useEffect, useState, useRef } from 'react';
+import { useEffect } from 'react';
 import { motion, useMotionValue, useSpring } from 'framer-motion';
 import Hero from '@/components/Hero';
 import About from '@/components/About';
@@ -19,7 +19,7 @@ const Cursor = () => {
   const cursorYSpring = useSpring(cursorY, springConfig);
 
   useEffect(() => {
-    const moveCursor = (e) => {
+    const moveCursor = (e: { clientX: number; clientY: number; }) => {
       cursorX.set(e.clientX);
       cursorY.set(e.clientY);
     };

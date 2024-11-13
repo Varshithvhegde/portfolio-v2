@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ExternalLink, Github, Maximize2, MinusCircle } from 'lucide-react';
+import { ExternalLink, Github, MinusCircle } from 'lucide-react';
 
 // Project data in JSON format
 export const projectsData = [

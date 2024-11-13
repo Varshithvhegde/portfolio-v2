@@ -1,7 +1,6 @@
 "use client"
 import React, { useEffect, useRef, useState } from 'react';
 import { motion } from 'framer-motion';
-import ThreeBackground from './ThreeBackground';
 const TimelineItem = ({ 
   company, 
   position, 

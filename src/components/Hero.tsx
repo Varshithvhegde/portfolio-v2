@@ -23,7 +23,7 @@ const AnimatedText = ({ children, delay = 0 }) => {
 };
 
 const Hero = () => {
-  const [isHovered, setIsHovered] = useState(false);
+  // const [isHovered, setIsHovered] = useState(false);
   
   return (
     <section className="h-screen flex items-center justify-center relative overflow-hidden bg-gradient-to-b from-gray-900 to-black">
@@ -38,8 +38,8 @@ const Hero = () => {
         <AnimatedText delay={200}>
           <h1 
             className="text-6xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-600 hover:scale-105 transition-transform duration-300"
-            onMouseEnter={() => setIsHovered(true)}
-            onMouseLeave={() => setIsHovered(false)}
+            // onMouseEnter={() => setIsHovered(true)}
+            // onMouseLeave={() => setIsHovered(false)}
           >
             Varshith V Hegde
           </h1>
