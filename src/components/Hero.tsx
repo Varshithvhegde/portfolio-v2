@@ -35,7 +35,7 @@ const Hero = () => {
 
       <div className="text-center space-y-8 relative z-10">
         {/* Main title with gradient and animation */}
-        <AnimatedText delay={200}>
+        <AnimatedText delay={50}>
           <h1 
             className="text-6xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-600 hover:scale-105 transition-transform duration-300"
             // onMouseEnter={() => setIsHovered(true)}
@@ -46,7 +46,7 @@ const Hero = () => {
         </AnimatedText>
 
         {/* Subtitle with fade-in animation */}
-        <AnimatedText delay={400}>
+        <AnimatedText delay={100}>
           <p className="text-2xl text-gray-300">
             Backend Developer
           </p>
