@@ -16,7 +16,7 @@ export const projectsData = [
     ],
     githubLink: "https://github.com/yourusername/ecommerce",
     liveLink: "https://ecommerce-demo.com",
-    image: "/api/placeholder/600/400",
+    image: "https://placehold.co/600x400/EEE/31343C",
     color: "from-blue-600 to-purple-600"
   },
   {
@@ -31,7 +31,7 @@ export const projectsData = [
     ],
     githubLink: "https://github.com/yourusername/task-manager",
     liveLink: "https://task-manager-demo.com",
-    image: "/api/placeholder/600/400",
+    image: "https://placehold.co/600x400/EEE/31343C",
     color: "from-emerald-600 to-teal-600"
   },
   {
@@ -46,7 +46,7 @@ export const projectsData = [
     ],
     githubLink: "https://github.com/yourusername/analytics-dashboard",
     liveLink: "https://analytics-demo.com",
-    image: "/api/placeholder/600/400",
+    image: "https://placehold.co/600x400/EEE/31343C",
     color: "from-orange-600 to-red-600"
   }
 ];
@@ -134,7 +134,7 @@ const Projects = () => {
         ))}
       </div>
 
-      <div className="max-w-7xl mx-auto px-4 relative z-10 pt-16">
+      <div className="max-w-7xl mx-auto px-4 relative  pt-16">
         <motion.h2 
           className="text-5xl font-bold text-center mb-16 bg-gradient-to-r from-blue-400 via-purple-400 to-blue-400 text-transparent bg-clip-text"
           animate={{
@@ -192,7 +192,7 @@ const Projects = () => {
         <AnimatePresence>
           {selectedId && (
             <motion.div
-              className="fixed inset-0 bg-black/60 backdrop-blur-sm z-[60] flex items-center justify-center p-4" // Updated z-index
+              className="fixed inset-0 bg-black/60 backdrop-blur-sm z-[20] flex items-center justify-center p-4" // Updated z-index
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}

@@ -104,7 +104,7 @@ const Contact: FC = () => {
               whileTap={{ scale: 0.95 }}
               className="group relative overflow-hidden"
             >
-              <div className="relative z-10 p-8 rounded-xl bg-gray-800/50 backdrop-blur-sm border border-gray-700 hover:border-gray-600 transition-colors">
+              <div className="relative  p-8 rounded-xl bg-gray-800/50 backdrop-blur-sm border border-gray-700 hover:border-gray-600 transition-colors">
                 <div className="absolute inset-0 bg-gradient-to-r opacity-0 group-hover:opacity-10 transition-opacity duration-500" />
                 <div className="flex flex-col items-center text-center">
                   <div className={`p-4 rounded-full bg-gradient-to-r ${item.color} mb-4`}>
