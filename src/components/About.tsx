@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { ChevronDown } from 'lucide-react';
+import { ChevronDown, Pen, Code2, BookOpen, Laptop } from 'lucide-react';
 
 const About = () => {
   const containerVariants = {
@@ -38,7 +38,7 @@ const About = () => {
     }
   };
 
-  // Pre-calculate positions for background elements to ensure consistency
+  // Background elements animation
   const backgroundElements = Array.from({ length: 20 }, (_, i) => ({
     id: i,
     left: `${(i * 5) % 100}%`,
@@ -73,74 +73,120 @@ const About = () => {
       </div>
 
       <motion.div 
-        className="max-w-4xl mx-auto px-4 relative"
+        className="max-w-5xl mx-auto px-6 relative"
         initial="hidden"
         animate="visible"
         variants={containerVariants}
       >
         <motion.div
-          className="text-center mb-12"
+          className="text-center mb-16"
           variants={itemVariants}
         >
           <motion.h2 
-            className="text-5xl font-bold bg-gradient-to-r from-blue-400 to-purple-500 text-transparent bg-clip-text mb-4"
+            className="text-6xl font-bold text-blue-400 mb-4"
             whileHover={{ scale: 1.05 }}
             transition={{ duration: 0.3 }}
           >
             About Me
           </motion.h2>
+          <motion.p 
+            className="text-lg text-blue-200 mt-4 max-w-2xl mx-auto"
+            variants={itemVariants}
+          >
+            Building websites and solving problems with code
+          </motion.p>
           <motion.div
             animate={floatAnimation}
-            className="mt-4"
+            className="mt-6"
           >
             <ChevronDown className="w-6 h-6 mx-auto text-blue-400" />
           </motion.div>
         </motion.div>
 
         <motion.div 
-          className="space-y-8 text-lg text-gray-300"
+          className="grid grid-cols-1 md:grid-cols-2 gap-8"
           variants={containerVariants}
         >
           <motion.div 
-            className="backdrop-blur-sm bg-gray-900/30 p-6 rounded-lg shadow-xl"
+            className="backdrop-blur-sm bg-gray-900/30 p-8 rounded-lg"
             variants={itemVariants}
             whileHover={{ scale: 1.02 }}
             transition={{ duration: 0.3 }}
           >
-            <p>
-              I&apos;m a <span className="text-blue-400 font-semibold">Backend Developer</span> with over 
-              <span className="text-purple-400 font-semibold"> 1.5 years </span> 
-              of experience in building and optimizing server-side applications. 
-              My expertise lies in <span className="text-blue-400 font-semibold">Java, Spring Boot, Python, Flask, and AWS Cloud Services</span>, complemented by strong 
-              front-end development skills in ReactJS.
+            <div className="flex items-center mb-6">
+              <Code2 className="w-8 h-8 text-blue-400 mr-4" />
+              <h3 className="text-2xl font-bold text-blue-400">Developer</h3>
+            </div>
+            <p className="text-gray-300 leading-relaxed">
+              I build websites and applications that work well and look great. 
+              I enjoy working on both the front-end and back-end, making sure 
+              everything runs smoothly from start to finish.
             </p>
           </motion.div>
 
           <motion.div 
-            className="backdrop-blur-sm bg-gray-900/30 p-6 rounded-lg shadow-xl"
+            className="backdrop-blur-sm bg-gray-900/30 p-8 rounded-lg"
             variants={itemVariants}
             whileHover={{ scale: 1.02 }}
             transition={{ duration: 0.3 }}
           >
-            <p>
-              I graduated from <span className="text-blue-400 font-semibold">Mangalore Institute of Technology & Engineering</span> with a B.E in Computer Science and 
-              Engineering, maintaining an impressive <span className="text-purple-400 font-semibold">CGPA of 8.75</span>.
+            <div className="flex items-center mb-6">
+              <Laptop className="w-8 h-8 text-purple-400 mr-4" />
+              <h3 className="text-2xl font-bold text-purple-400">Problem Solver</h3>
+            </div>
+            <p className="text-gray-300 leading-relaxed">
+              I enjoy tackling complex problems and finding simple solutions. 
+              Learning new technologies and tools helps me build better software 
+              and create useful features for users.
             </p>
           </motion.div>
 
           <motion.div 
-            className="backdrop-blur-sm bg-gray-900/30 p-6 rounded-lg shadow-xl"
+            className="backdrop-blur-sm bg-gray-900/30 p-8 rounded-lg"
             variants={itemVariants}
             whileHover={{ scale: 1.02 }}
             transition={{ duration: 0.3 }}
           >
-            <p>
-              I&apos;m passionate about <span className="text-blue-400 font-semibold">writing clean, maintainable code</span> and delivering 
-              <span className="text-purple-400 font-semibold"> high-quality, scalable software solutions</span>. 
-              My experience includes <span className="text-blue-400 font-semibold">leading cloud infrastructure initiatives</span>, developing full-stack applications, and 
-              implementing efficient data processing systems.
+            <div className="flex items-center mb-6">
+              <BookOpen className="w-8 h-8 text-green-400 mr-4" />
+              <h3 className="text-2xl font-bold text-green-400">Writer</h3>
+            </div>
+            <p className="text-gray-300 leading-relaxed">
+              I write articles on Dev.to to share what I&apos;ve learned along the way. 
+              Teaching others helps me understand things better, and I enjoy helping 
+              fellow developers learn and grow.
             </p>
           </motion.div>
+
+          <motion.div 
+            className="backdrop-blur-sm bg-gray-900/30 p-8 rounded-lg"
+            variants={itemVariants}
+            whileHover={{ scale: 1.02 }}
+            transition={{ duration: 0.3 }}
+          >
+            <div className="flex items-center mb-6">
+              <Pen className="w-8 h-8 text-pink-400 mr-4" />
+              <h3 className="text-2xl font-bold text-pink-400">Poet</h3>
+            </div>
+            <p className="text-gray-300 leading-relaxed">
+              When I&apos;m not coding, I write poetry in Kannada. Having both technical 
+              and creative interests helps me think differently about problems and 
+              come up with unique ideas.
+            </p>
+          </motion.div>
+        </motion.div>
+
+        <motion.div 
+          className="mt-16 text-center"
+          variants={itemVariants}
+        >
+          <motion.blockquote 
+            className="text-xl italic text-gray-300 max-w-3xl mx-auto"
+            whileHover={{ scale: 1.05 }}
+            transition={{ duration: 0.3 }}
+          >
+            &quot;Mixing code with creativity to build useful things for the web.&quot;
+          </motion.blockquote>
         </motion.div>
       </motion.div>
     </section>
