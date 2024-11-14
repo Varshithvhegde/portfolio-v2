@@ -106,7 +106,7 @@ const Projects = () => {
   }));
 
   return (
-    <section className="min-h-screen relative bg-gradient-to-br from-gray-900 via-gray-800 to-black py-20 overflow-hidden" id="projects">
+    <section className="min-h-screen relative bg-gradient-to-br from-gray-900 via-gray-800 to-black py-0 overflow-hidden" id="projects">
       {/* Animated background */}
       <div className="absolute inset-0">
         {floatingElements.map((el) => (

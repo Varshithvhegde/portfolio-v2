@@ -33,7 +33,7 @@ const Hero = () => {
         <div className="absolute -right-32 -bottom-32 w-96 h-96 bg-purple-500/20 rounded-full blur-3xl transform transition-transform duration-3000 animate-pulse delay-1000" />
       </div>
 
-      <div className="text-center space-y-8 relative z-10">
+      <div className="text-center space-y-8 relative z-5">
         {/* Main title with gradient and animation */}
         <AnimatedText delay={50}>
           <h1 
