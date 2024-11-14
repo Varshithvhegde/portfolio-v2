@@ -60,7 +60,7 @@ const skillsData = {
 };
 
 const SkillCard = ({ category, index }) => {
-  const IconComponent = category.icon;
+  // const IconComponent = category.icon;
   
   return (
     <motion.div
