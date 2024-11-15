@@ -8,9 +8,21 @@ const Projects = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isEasterEggFound, setIsEasterEggFound] = useState(false);
   const [clickCount, setClickCount] = useState(0);
+  const [isMobile, setIsMobile] = useState(false);
   const controls = useAnimation();
-  
-  const projectsPerView = 3;
+
+  // Detect mobile screen
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
+  const projectsPerView = isMobile ? 1 : 3;
   const totalProjects = projectsData.length;
   const maxIndex = totalProjects - projectsPerView;
 
@@ -77,7 +89,7 @@ const Projects = () => {
   };
 
   // Enhanced floating elements with more variety
-  const floatingElements = Array.from({ length: 25 }, (_, i) => ({
+  const floatingElements = Array.from({ length: isMobile ? 15 : 25 }, (_, i) => ({
     id: i,
     x: (i * 7) % 100,
     y: (i * 5) % 100,
@@ -122,8 +134,8 @@ const Projects = () => {
 
       <div className="max-w-7xl mx-auto px-4 relative pt-16">
         {/* Enhanced title with hover effect */}
-        <motion.h2 
-          className="text-5xl font-bold text-center mb-16 bg-gradient-to-r from-blue-400 via-purple-400 to-blue-400 text-transparent bg-clip-text cursor-pointer"
+        <motion.h2
+          className="text-3xl md:text-5xl font-bold text-center mb-8 md:mb-16 bg-gradient-to-r from-blue-400 via-purple-400 to-blue-400 text-transparent bg-clip-text cursor-pointer"
           animate={{
             backgroundPosition: ['0% 50%', '100% 50%', '0% 50%'],
           }}
@@ -149,14 +161,14 @@ const Projects = () => {
           )}
         </motion.h2>
 
-        <div className="relative px-16">
+        <div className="relative px-4 md:px-16">
           {/* Enhanced Navigation Buttons */}
-          <motion.div 
-            className="absolute left-0 top-0 bottom-0 flex items-center"
+          <motion.div
+            className="absolute left-0 top-1/2 -translate-y-1/2 z-10"
             whileHover={{ x: 5 }}
           >
             <motion.button
-              className={`group relative z-10 p-3 rounded-full bg-white/10 backdrop-blur-lg text-white 
+              className={`group relative p-2 md:p-3 rounded-full bg-white/10 backdrop-blur-lg text-white 
                 ${currentIndex === 0 ? 'opacity-50 cursor-not-allowed' : 'hover:bg-white/20'}`}
               onClick={prevSlide}
               disabled={currentIndex === 0}
@@ -164,22 +176,16 @@ const Projects = () => {
               whileTap={{ scale: 0.9 }}
               style={{ transform: 'none' }}
             >
-              <ChevronLeft size={24} />
-              <motion.span
-                className="absolute inset-0 rounded-full bg-white/5"
-                initial={false}
-                animate={{ scale: [1, 1.2, 1] }}
-                transition={{ duration: 1.5, repeat: Infinity }}
-              />
+              <ChevronLeft size={isMobile ? 20 : 24} />
             </motion.button>
           </motion.div>
-          
-          <motion.div 
-            className="absolute right-0 top-0 bottom-0 flex items-center"
+
+          <motion.div
+            className="absolute right-0 top-1/2 -translate-y-1/2 z-10"
             whileHover={{ x: -5 }}
           >
             <motion.button
-              className={`group relative z-10 p-3 rounded-full bg-white/10 backdrop-blur-lg text-white
+              className={`group relative p-2 md:p-3 rounded-full bg-white/10 backdrop-blur-lg text-white
                 ${currentIndex === maxIndex ? 'opacity-50 cursor-not-allowed' : 'hover:bg-white/20'}`}
               onClick={nextSlide}
               disabled={currentIndex === maxIndex}
@@ -187,25 +193,29 @@ const Projects = () => {
               whileTap={{ scale: 0.9 }}
               style={{ transform: 'none' }}
             >
-              <ChevronRight size={24} />
-              <motion.span
-                className="absolute inset-0 rounded-full bg-white/5"
-                initial={false}
-                animate={{ scale: [1, 1.2, 1] }}
-                transition={{ duration: 1.5, repeat: Infinity }}
-              />
+              <ChevronRight size={isMobile ? 20 : 24} />
             </motion.button>
           </motion.div>
 
           {/* Enhanced Carousel Container */}
           <motion.div
-            className="overflow-hidden"
+            className="overflow-hidden relative"
             variants={containerVariants}
             initial="hidden"
             animate="visible"
           >
             <motion.div
-              className="flex gap-8"
+              className="flex gap-4 md:gap-8"
+              drag="x"
+              dragConstraints={{ left: -maxIndex * (100 / projectsPerView), right: 0 }}
+              onDragEnd={(event, info) => {
+                const dragThreshold = 50; // Minimum drag distance to trigger slide
+                if (info.offset.x < -dragThreshold) {
+                  nextSlide(); // Slide to the next project
+                } else if (info.offset.x > dragThreshold) {
+                  prevSlide(); // Slide to the previous project
+                }
+              }}
               animate={{
                 x: `-${currentIndex * (100 / projectsPerView)}%`
               }}
@@ -221,45 +231,42 @@ const Projects = () => {
                   layoutId={`project-${project.id}`}
                   onClick={() => setSelectedId(project.id)}
                   variants={cardVariants}
-                  whileHover={{ 
+                  whileHover={{
                     scale: 1.05,
                     y: -5,
                     transition: { duration: 0.2 }
                   }}
-                  className="cursor-pointer min-w-[calc(33.333%-1.333rem)]"
+                  className={`cursor-pointer ${isMobile ? 'min-w-full' : 'min-w-[calc(33.333%-1.333rem)]'}`}
                 >
-                  <motion.div 
+                  {/* Card Content */}
+                  <motion.div
                     className="backdrop-blur-lg bg-white/10 rounded-xl overflow-hidden shadow-xl h-full"
                     whileHover={{
                       boxShadow: "0 0 20px rgba(96, 165, 250, 0.3)"
                     }}
                   >
                     <motion.div className="relative overflow-hidden">
-                      <motion.img 
-                        src={project.image} 
+                      <motion.img
+                        src={project.image}
                         alt={project.title}
-                        className="w-full h-48 object-cover"
+                        className="w-full h-40 md:h-48 object-cover"
                         whileHover={{
                           scale: 1.1,
                           transition: { duration: 0.3 }
                         }}
                       />
-                      <motion.div
-                        className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0"
-                        whileHover={{ opacity: 1 }}
-                      />
                     </motion.div>
-                    <div className="p-6">
-                      <h3 className="text-xl font-semibold text-white mb-2">{project.title}</h3>
-                      <p className="text-gray-300 line-clamp-2">{project.description}</p>
-                      <motion.div 
+                    <div className="p-4 md:p-6">
+                      <h3 className="text-lg md:text-xl font-semibold text-white mb-2">{project.title}</h3>
+                      <p className="text-sm md:text-base text-gray-300 line-clamp-2">{project.description}</p>
+                      <motion.div
                         className="mt-4 flex flex-wrap gap-2"
                         initial={{ opacity: 0, y: 10 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: 0.2 }}
                       >
-                        {project.techStack.slice(0, 3).map((tech, index) => (
-                          <motion.span 
+                        {project.techStack.slice(0, isMobile ? 2 : 3).map((tech, index) => (
+                          <motion.span
                             key={tech}
                             className={`text-xs px-2 py-1 rounded-full bg-gradient-to-r ${project.color} text-white`}
                             whileHover={{ scale: 1.1 }}
@@ -278,41 +285,28 @@ const Projects = () => {
             </motion.div>
           </motion.div>
 
+
           {/* Enhanced Progress Indicators */}
-          <div className="flex justify-center gap-2 mt-8">
+          <div className="flex justify-center gap-1 md:gap-2 mt-4 md:mt-8">
             {Array.from({ length: maxIndex + 1 }).map((_, index) => (
               <motion.button
                 key={index}
-                className={`h-2 rounded-full ${
-                  index === currentIndex ? 'w-8 bg-blue-500' : 'w-2 bg-gray-600'
-                }`}
+                className={`h-1 md:h-2 rounded-full ${index === currentIndex ? 'w-6 md:w-8 bg-blue-500' : 'w-1 md:w-2 bg-gray-600'
+                  }`}
                 onClick={() => setCurrentIndex(index)}
                 whileHover={{ scale: 1.2 }}
                 whileTap={{ scale: 0.9 }}
                 transition={{ type: "spring", stiffness: 300, damping: 17 }}
-              >
-                <motion.div
-                  className="w-full h-full rounded-full bg-blue-400/50"
-                  initial={false}
-                  animate={index === currentIndex ? {
-                    scale: [1, 1.2, 1],
-                    opacity: [0.5, 1, 0.5]
-                  } : {}}
-                  transition={{
-                    duration: 2,
-                    repeat: Infinity
-                  }}
-                />
-              </motion.button>
+              />
             ))}
           </div>
         </div>
 
-        {/* Enhanced Project Details Modal */}
+        {/* Modal remains mostly the same, just add some mobile-friendly padding */}
         <AnimatePresence>
           {selectedId && (
             <motion.div
-              className="fixed inset-0 bg-black/60 backdrop-blur-sm z-[20] flex items-center justify-center p-4"
+              className="fixed inset-0 bg-black/60 backdrop-blur-sm z-[20] flex items-center justify-center p-2 md:p-4"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
@@ -324,19 +318,20 @@ const Projects = () => {
                 initial="hidden"
                 animate="visible"
                 exit="exit"
-                className="bg-gray-900 rounded-xl max-w-3xl w-full max-h-[90vh] overflow-y-auto"
+                className="bg-gray-900 rounded-xl w-full max-w-3xl max-h-[90vh] overflow-y-auto"
                 onClick={(e) => e.stopPropagation()}
               >
+                {/* Modal content remains the same */}
                 {(() => {
                   const project = projectsData.find(p => p.id === selectedId);
                   return (
                     <div className="relative">
                       <motion.div className="relative">
-                        <motion.img 
-                          src={project.image} 
+                        <motion.img
+                          src={project.image}
                           alt={project.title}
                           className="w-full h-64 object-cover"
-                         
+
                         />
                       </motion.div>
                       <motion.button
@@ -347,20 +342,20 @@ const Projects = () => {
                       >
                         <MinusCircle size={24} />
                       </motion.button>
-                      <motion.div 
+                      <motion.div
                         className="p-8"
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: 0.2 }}
                       >
-                        <motion.h3 
+                        <motion.h3
                           className="text-2xl font-bold text-white mb-4"
                           initial={{ opacity: 0, x: -20 }}
                           animate={{ opacity: 1, x: 0 }}
                         >
                           {project.title}
                         </motion.h3>
-                        <motion.p 
+                        <motion.p
                           className="text-gray-300 mb-6"
                           initial={{ opacity: 0 }}
                           animate={{ opacity: 1 }}
@@ -368,8 +363,8 @@ const Projects = () => {
                         >
                           {project.description}
                         </motion.p>
-                        
-                        <motion.div 
+
+                        <motion.div
                           className="mb-6"
                           initial={{ opacity: 0, y: 20 }}
                           animate={{ opacity: 1, y: 0 }}
@@ -386,7 +381,7 @@ const Projects = () => {
                                 transition={{ delay: index * 0.1 }}
                                 whileHover={{ x: 10 }}
                               >
-                                <motion.span 
+                                <motion.span
                                   className="text-blue-400 transform-gpu"
                                   initial={{ scale: 1 }}
                                   animate={{ scale: [1, 1.2, 1] }}
@@ -402,7 +397,7 @@ const Projects = () => {
                           </ul>
                         </motion.div>
 
-                        <motion.div 
+                        <motion.div
                           className="mb-6"
                           initial={{ opacity: 0, y: 20 }}
                           animate={{ opacity: 1, y: 0 }}
@@ -431,7 +426,7 @@ const Projects = () => {
                           </div>
                         </motion.div>
 
-                        <motion.div 
+                        <motion.div
                           className="flex gap-4"
                           initial={{ opacity: 0, y: 20 }}
                           animate={{ opacity: 1, y: 0 }}
