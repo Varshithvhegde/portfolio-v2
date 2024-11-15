@@ -1,67 +1,72 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import { Command, ChevronRight, Circle, Terminal } from 'lucide-react';
 import {
-  Code2, Database, Cloud, Blocks,
-  FileJson, Coffee, Braces, FileCode,
-  Leaf, Beaker, Palette, Box, Server,
-  HardDrive, Workflow, GitBranch, Container,
-  Database as Database2, TableProperties,
-  Terminal, ChevronRight, Circle, Command
-} from 'lucide-react';
+  FaPython, FaJava, FaJs, FaDatabase,
+  FaReact, FaAngular, FaAws, FaJenkins,
+  FaGitlab, FaDocker, FaAndroid
+} from 'react-icons/fa';
+import {
+  SiTypescript, SiSpring, SiFlask,
+  SiNextdotjs, SiMysql, SiMongodb, SiKotlin,
+  SiAndroid
+} from 'react-icons/si';
+import {
+  TbBrandFramerMotion
+} from 'react-icons/tb';
 
 const skillsData = {
   categories: [
     {
       title: "./languages",
-      icon: Code2,
+      icon: TbBrandFramerMotion,
       color: "from-emerald-500 to-teal-500",
       skills: [
-        { name: "Python", icon: Braces },
-        { name: "Java", icon: Coffee },
-        { name: "JavaScript", icon: FileJson },
-        { name: "SQL", icon: Database2 },
-        { name: "TypeScript", icon: FileCode }
+        { name: "Python", icon: FaPython },
+        { name: "Java", icon: FaJava },
+        { name: "JavaScript", icon: FaJs },
+        { name: "SQL", icon: FaDatabase },
+        { name: "TypeScript", icon: SiTypescript },
+        { name: "Kotlin", icon: SiKotlin }
       ]
     },
     {
       title: "./frameworks",
-      icon: Blocks,
+      icon: TbBrandFramerMotion,
       color: "from-cyan-500 to-blue-500",
       skills: [
-        { name: "Spring Boot", icon: Leaf },
-        { name: "Flask", icon: Beaker },
-        { name: "React.js", icon: Palette },
-        { name: "Angular", icon: Box },
-        { name: "Next.js", icon: Server }
+        { name: "Spring Boot", icon: SiSpring },
+        { name: "Flask", icon: SiFlask },
+        { name: "React.js", icon: FaReact },
+        { name: "Angular", icon: FaAngular },
+        { name: "Next.js", icon: SiNextdotjs },
+        { name: "Android", icon: SiAndroid }
       ]
     },
     {
       title: "./devops",
-      icon: Cloud,
+      icon: TbBrandFramerMotion,
       color: "from-violet-500 to-purple-500",
       skills: [
-        { name: "AWS EC2", icon: Server },
-        { name: "AWS S3", icon: HardDrive },
-        { name: "AWS Lambda", icon: Workflow },
-        { name: "Jenkins", icon: Container },
-        { name: "GitLab CI/CD", icon: GitBranch }
+        { name: "AWS", icon: FaAws },
+        { name: "Docker", icon: FaDocker },
+        { name: "Jenkins", icon: FaJenkins },
+        { name: "GitLab CI/CD", icon: FaGitlab }
       ]
     },
     {
       title: "./databases",
-      icon: Database,
+      icon: TbBrandFramerMotion,
       color: "from-rose-500 to-pink-500",
       skills: [
-        { name: "MongoDB", icon: Database2 },
-        { name: "MySQL", icon: TableProperties }
+        { name: "MongoDB", icon: SiMongodb },
+        { name: "MySQL", icon: SiMysql }
       ]
     }
   ]
 };
 
 const SkillCard = ({ category, index }) => {
-  // const IconComponent = category.icon;
-  
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -73,7 +78,7 @@ const SkillCard = ({ category, index }) => {
         <ChevronRight className="w-4 h-4" />
         <span className="font-mono text-sm">{category.title}</span>
       </div>
-      
+
       <div className="grid grid-cols-2 gap-3">
         {category.skills.map((skill, idx) => {
           const SkillIcon = skill.icon;
@@ -114,7 +119,7 @@ const Skills = () => {
             <Command className="w-8 h-8 text-blue-400" />
             <h2 className="text-3xl font-bold text-white">Technical Skills</h2>
           </div>
-          
+
           {/* Terminal Window */}
           <div className="bg-gray-800 rounded-t-lg p-3 border border-gray-700">
             <div className="flex items-center gap-2">
@@ -124,7 +129,7 @@ const Skills = () => {
               <span className="ml-3 font-mono text-xs text-gray-400">skills.terminal</span>
             </div>
           </div>
-          
+
           <div className="bg-gray-900/90 backdrop-blur-sm p-4 rounded-b-lg border-x border-b border-gray-700">
             <div className="flex items-center gap-2 mb-3">
               <Terminal className="w-5 h-5 text-blue-400" />
@@ -138,14 +143,14 @@ const Skills = () => {
             </div>
           </div>
         </motion.div>
-        
+
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           {skillsData.categories.map((category, index) => (
             <SkillCard key={index} category={category} index={index} />
           ))}
         </div>
       </div>
-      
+
       <style jsx>{`
         .typing-animation {
           overflow: hidden;
