@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { ArrowDown } from 'lucide-react';
+import { ArrowDown, MapPin, Mail } from 'lucide-react';
 
 const AnimatedText = ({ children, delay = 0 }) => {
   const [isVisible, setIsVisible] = useState(false);
@@ -22,9 +22,13 @@ const AnimatedText = ({ children, delay = 0 }) => {
   );
 };
 
+const HighlightedText = ({ children }) => (
+  <span className="bg-gradient-to-r from-blue-500/20 to-purple-500/20 px-2 py-1 rounded-md hover:from-blue-500/30 hover:to-purple-500/30 transition-colors duration-300 font-medium">
+    {children}
+  </span>
+);
+
 const Hero = () => {
-  // const [isHovered, setIsHovered] = useState(false);
-  
   return (
     <section className="h-screen flex items-center justify-center relative overflow-hidden bg-gradient-to-b from-gray-900 to-black">
       {/* Background gradient circles */}
@@ -33,51 +37,53 @@ const Hero = () => {
         <div className="absolute -right-32 -bottom-32 w-96 h-96 bg-purple-500/20 rounded-full blur-3xl transform transition-transform duration-3000 animate-pulse delay-1000" />
       </div>
 
-      <div className="text-center space-y-8 relative z-5">
+      <div className="text-center space-y-4 relative z-5">
         {/* Main title with gradient and animation */}
         <AnimatedText delay={50}>
-          <h1 
-            className="text-6xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-600 hover:scale-105 transition-transform duration-300"
-            // onMouseEnter={() => setIsHovered(true)}
-            // onMouseLeave={() => setIsHovered(false)}
-          >
+          <h1 className="text-6xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-600 hover:scale-105 transition-transform duration-300 leading-relaxed">
             Varshith V Hegde
           </h1>
         </AnimatedText>
 
-        {/* Subtitle with fade-in animation */}
-        <AnimatedText delay={100}>
-          <p className="text-2xl text-gray-300">
-            Backend Developer
+        {/* Location with icon - reduced spacing */}
+        <AnimatedText delay={150}>
+          <div className="flex items-center justify-center space-x-2 text-gray-400 -mt-2">
+            <MapPin size={16} />
+            <span>Karnataka, India</span>
+          </div>
+        </AnimatedText>
+
+        {/* Professional title with fade-in animation */}
+        <AnimatedText delay={250}>
+          <p className="text-2xl text-gray-300 mt-4">
+            Full Stack Developer & Android Engineer
           </p>
         </AnimatedText>
 
-        {/* Description with fade-in animation */}
+        {/* Enhanced description with fade-in animation */}
         <AnimatedText delay={600}>
-          <p className="text-lg text-gray-400 max-w-2xl mx-auto">
-            Software Developer with over 1.5 years of experience in building and 
-            optimizing server-side applications.
-          </p>
+          <div className="text-lg text-gray-400 max-w-2xl mx-auto leading-relaxed mt-4">
+            <p>
+              Hi! I'm a <HighlightedText>freelance full-stack developer</HighlightedText> who builds 
+              web applications and a <br/><HighlightedText>self-taught Android developer</HighlightedText> focused on Kotlin.
+            </p>
+            <p className="mt-4">
+              Currently working as a <HighlightedText>backend developer</HighlightedText> with{' '}
+              <HighlightedText>1.5+ years</HighlightedText> of professional experience in 
+              developing server-side applications.
+            </p>
+          </div>
         </AnimatedText>
 
-        {/* Social links with hover effects */}
+        {/* Contact button */}
         <AnimatedText delay={800}>
-          <div className="flex justify-center gap-4 mt-8">
+          <div className="flex justify-center gap-4 mt-6">
             <a
-              href="https://github.com/varshithvhegde"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="px-6 py-3 bg-blue-600 rounded-full hover:bg-blue-700 transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-blue-500/50"
+              href="#contact"
+              className="px-6 py-3 bg-purple-600 rounded-full hover:bg-purple-700 transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-purple-500/50 flex items-center space-x-2"
             >
-              GitHub
-            </a>
-            <a
-              href="https://www.linkedin.com/in/varshithvhegde/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="px-6 py-3 bg-gray-700 rounded-full hover:bg-gray-600 transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-gray-500/50"
-            >
-              LinkedIn
+              <Mail size={18} />
+              <span>Contact Me</span>
             </a>
           </div>
         </AnimatedText>

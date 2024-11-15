@@ -47,26 +47,40 @@ const About = () => {
     delay: (i % 4) * 0.5,
   }));
 
+    // Floating animation for background elements
+    const floatingElements = Array.from({ length: 20 }, (_, i) => ({
+      id: i,
+      x: (i * 7) % 100,
+      y: (i * 5) % 100,
+      size: 4 + (i % 3) * 2,
+      duration: 3 + (i % 2) * 2
+    }));
+
   return (
     <section id="about" className="min-h-screen relative bg-gradient-to-b from-gray-900 to-gray-800 py-20 overflow-hidden">
       {/* Animated background elements */}
-      <div className="absolute inset-0 overflow-hidden">
-        {backgroundElements.map((element) => (
+      {/* Animated background */}
+      <div className="absolute inset-0">
+        {floatingElements.map((el) => (
           <motion.div
-            key={element.id}
-            className="absolute w-2 h-2 bg-blue-500 rounded-full opacity-20"
+            key={el.id}
+            className="absolute rounded-full opacity-20"
             style={{
-              left: element.left,
-              top: element.top,
+              background: `linear-gradient(45deg, #60A5FA, #7C3AED)`,
+              width: el.size,
+              height: el.size,
+              left: `${el.x}%`,
+              top: `${el.y}%`,
             }}
             animate={{
-              scale: [1, 1.5, 1],
-              opacity: [0.2, 0.5, 0.2],
+              y: [0, 30, 0],
+              x: [0, 15, 0],
+              scale: [1, 1.2, 1],
             }}
             transition={{
-              duration: element.duration,
+              duration: el.duration,
               repeat: Infinity,
-              delay: element.delay,
+              ease: "easeInOut"
             }}
           />
         ))}
