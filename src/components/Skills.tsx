@@ -4,12 +4,13 @@ import { Command, ChevronRight, Circle, Terminal } from 'lucide-react';
 import {
   FaPython, FaJava, FaJs, FaDatabase,
   FaReact, FaAngular, FaAws, FaJenkins,
-  FaGitlab, FaDocker, FaAndroid
+  FaGitlab, FaDocker
 } from 'react-icons/fa';
 import {
   SiTypescript, SiSpring, SiFlask,
   SiNextdotjs, SiMysql, SiMongodb, SiKotlin,
-  SiAndroid
+  SiAndroid,
+  SiPostgresql
 } from 'react-icons/si';
 import {
   TbBrandFramerMotion
@@ -22,10 +23,9 @@ const skillsData = {
       icon: TbBrandFramerMotion,
       color: "from-emerald-500 to-teal-500",
       skills: [
-        { name: "Python", icon: FaPython },
         { name: "Java", icon: FaJava },
+        { name: "Python", icon: FaPython },
         { name: "JavaScript", icon: FaJs },
-        { name: "SQL", icon: FaDatabase },
         { name: "TypeScript", icon: SiTypescript },
         { name: "Kotlin", icon: SiKotlin }
       ]
@@ -35,12 +35,12 @@ const skillsData = {
       icon: TbBrandFramerMotion,
       color: "from-cyan-500 to-blue-500",
       skills: [
-        { name: "Spring Boot", icon: SiSpring },
         { name: "Flask", icon: SiFlask },
+        { name: "Android", icon: SiAndroid },
         { name: "React.js", icon: FaReact },
+        { name: "Spring Boot", icon: SiSpring },
         { name: "Angular", icon: FaAngular },
         { name: "Next.js", icon: SiNextdotjs },
-        { name: "Android", icon: SiAndroid }
       ]
     },
     {
@@ -50,7 +50,6 @@ const skillsData = {
       skills: [
         { name: "AWS", icon: FaAws },
         { name: "Docker", icon: FaDocker },
-        { name: "Jenkins", icon: FaJenkins },
         { name: "GitLab CI/CD", icon: FaGitlab }
       ]
     },
@@ -60,7 +59,8 @@ const skillsData = {
       color: "from-rose-500 to-pink-500",
       skills: [
         { name: "MongoDB", icon: SiMongodb },
-        { name: "MySQL", icon: SiMysql }
+        { name: "MySQL", icon: SiMysql },
+        { name: "Postgresql" , icon: SiPostgresql}
       ]
     }
   ]
