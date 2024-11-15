@@ -38,15 +38,6 @@ const About = () => {
     }
   };
 
-  // Background elements animation
-  const backgroundElements = Array.from({ length: 20 }, (_, i) => ({
-    id: i,
-    left: `${(i * 5) % 100}%`,
-    top: `${(i * 7) % 100}%`,
-    duration: 3 + (i % 2) * 2,
-    delay: (i % 4) * 0.5,
-  }));
-
     // Floating animation for background elements
     const floatingElements = Array.from({ length: 20 }, (_, i) => ({
       id: i,

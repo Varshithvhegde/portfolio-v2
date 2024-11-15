@@ -64,7 +64,7 @@ const Hero = () => {
         <AnimatedText delay={600}>
           <div className="text-lg text-gray-400 max-w-2xl mx-auto leading-relaxed mt-4">
             <p>
-              Hi! I'm a <HighlightedText>freelance full-stack developer</HighlightedText> who builds 
+              Hi! I&apos;m a <HighlightedText>freelance full-stack developer</HighlightedText> who builds 
               web applications and a <br/><HighlightedText>self-taught Android developer</HighlightedText> focused on Kotlin.
             </p>
             <p className="mt-4">
