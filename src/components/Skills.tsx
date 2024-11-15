@@ -2,8 +2,8 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { Command, ChevronRight, Circle, Terminal } from 'lucide-react';
 import {
-  FaPython, FaJava, FaJs, FaDatabase,
-  FaReact, FaAngular, FaAws, FaJenkins,
+  FaPython, FaJava, FaJs,
+  FaReact, FaAngular, FaAws,
   FaGitlab, FaDocker
 } from 'react-icons/fa';
 import {
