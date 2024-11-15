@@ -173,7 +173,7 @@ const Navbar = () => {
 
   const navItems = [
     { label: '< About />', id: 'about', icon: Code },
-    { label: '{ Experience }', id: 'experience', icon: Terminal },
+    { label: '{ Experience }', id: 'experience-education', icon: Terminal },
     { label: '[Skills]', id: 'skills', icon: Code },
     { label: '_projects()', id: 'projects', icon: Terminal },
     { label: './contact', id: 'contact', icon: Code }

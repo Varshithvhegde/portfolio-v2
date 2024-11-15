@@ -87,7 +87,7 @@ const CursorToggle = ({ isEnabled, onToggle }: { isEnabled: boolean; onToggle: (
           <span className={`text-sm whitespace-nowrap ${
             isEnabled ? 'text-blue-400' : 'text-gray-300'
           }`}>
-            Glow Effect
+            Cursor Effect
           </span>
         </motion.div>
         
