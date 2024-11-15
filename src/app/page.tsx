@@ -11,11 +11,10 @@ import Projects from '@/components/Project';
 import { Switch } from "@/components/ui/switch"
 import { MousePointerIcon as CursorIcon } from 'lucide-react';
 
-// Custom cursor component
 const Cursor = () => {
   const cursorX = useMotionValue(-100);
   const cursorY = useMotionValue(-100);
-
+  
   const springConfig = { damping: 25, stiffness: 700 };
   const cursorXSpring = useSpring(cursorX, springConfig);
   const cursorYSpring = useSpring(cursorY, springConfig);
@@ -30,9 +29,34 @@ const Cursor = () => {
       window.removeEventListener('mousemove', moveCursor);
     };
   }, []);
-}
 
-// Cursor Toggle Component
+  return (
+    <>
+      {/* Main cursor */}
+      <motion.div
+        className="fixed w-4 h-4 bg-blue-400 rounded-full pointer-events-none z-50 mix-blend-difference"
+        style={{
+          x: cursorXSpring,
+          y: cursorYSpring,
+          translateX: '-50%',
+          translateY: '-50%'
+        }}
+      />
+      {/* Cursor trail */}
+      <motion.div
+        className="fixed w-8 h-8 border-2 border-blue-400 rounded-full pointer-events-none z-50 mix-blend-difference"
+        style={{
+          x: cursorXSpring,
+          y: cursorYSpring,
+          translateX: '-50%',
+          translateY: '-50%',
+          transition: 'all 0.1s ease-out'
+        }}
+      />
+    </>
+  );
+};
+
 const CursorToggle = ({ isEnabled, onToggle }: { isEnabled: boolean; onToggle: (checked: boolean) => void }) => {
   const [isHovered, setIsHovered] = useState(false);
 
@@ -43,7 +67,7 @@ const CursorToggle = ({ isEnabled, onToggle }: { isEnabled: boolean; onToggle: (
       transition={{ duration: 0.3 }}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
-      className="fixed bottom-4 right-4 z-50 flex items-center gap-3 rounded-full cursor-pointer"
+      className="fixed bottom-4 right-4 z-50 flex items-center gap-3 rounded-full"
     >
       <motion.div
         layout
@@ -51,20 +75,21 @@ const CursorToggle = ({ isEnabled, onToggle }: { isEnabled: boolean; onToggle: (
           isEnabled ? 'bg-blue-500/20' : 'bg-gray-800/20'
         }`}
       >
-        <AnimatePresence>
-          {isHovered && (
-            <motion.span
-              initial={{ opacity: 0, width: 0 }}
-              animate={{ opacity: 1, width: 'auto' }}
-              exit={{ opacity: 0, width: 0 }}
-              className={`text-sm whitespace-nowrap overflow-hidden ${
-                isEnabled ? 'text-blue-400' : 'text-gray-300'
-              }`}
-            >
-              Custom Cursor
-            </motion.span>
-          )}
-        </AnimatePresence>
+        <motion.div 
+          className="flex items-center"
+          initial={false}
+          animate={{
+            width: isHovered ? 'auto' : 0,
+            marginRight: isHovered ? 8 : 0
+          }}
+          style={{ overflow: 'hidden' }}
+        >
+          <span className={`text-sm whitespace-nowrap ${
+            isEnabled ? 'text-blue-400' : 'text-gray-300'
+          }`}>
+            Glow Effect
+          </span>
+        </motion.div>
         
         <div className="flex items-center gap-2">
           <motion.div
@@ -106,16 +131,7 @@ export default function Home() {
   const handleToggleCursor = (checked: boolean) => {
     setIsCursorEnabled(checked);
     localStorage.setItem('customCursorEnabled', checked.toString());
-    if (!checked) {
-      document.body.style.cursor = 'auto';
-    } else {
-      document.body.style.cursor = 'none';
-    }
   };
-
-  useEffect(() => {
-    document.body.style.cursor = isCursorEnabled ? 'none' : 'auto';
-  }, [isCursorEnabled]);
 
   return (
     <>
@@ -129,7 +145,7 @@ export default function Home() {
           <Experience />
           <Skills />
           <Projects/>
-          <Contact />
+          <Contact /> 
         </div>
       </main>
     </>
