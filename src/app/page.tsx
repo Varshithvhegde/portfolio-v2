@@ -30,6 +30,7 @@ const Cursor = () => {
       window.removeEventListener('mousemove', moveCursor);
     };
   }, []);
+}
 
 // Cursor Toggle Component
 const CursorToggle = ({ isEnabled, onToggle }: { isEnabled: boolean; onToggle: (checked: boolean) => void }) => {
